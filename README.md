@@ -1,6 +1,7 @@
 # Portfolio created with a personal PSR based micro-framework
 
-This micro framework aims to give a little structure in order to use PSR-7, PSR-17, PSR-15. The architecture also follows the [ADR](https://github.com/pmjones/adr) pattern, which is a refinement of MVC.
+This micro framework aims to give a little structure in order to use PSR-7, PSR-17, PSR-15.
+The architecture also follows the [ADR](https://github.com/pmjones/adr) pattern, which is a refinement of MVC.
 
 ## Source of inspirations
 
