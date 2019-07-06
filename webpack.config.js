@@ -1,0 +1,80 @@
+var Encore = require('@symfony/webpack-encore');
+var PurgeCssPlugin = require('purgecss-webpack-plugin');
+var glob = require('glob-all');
+var path = require('path');
+
+Encore
+    // directory where compiled assets will be stored
+    .setOutputPath('public/build/')
+    // public path used by the web server to access the output path
+    .setPublicPath('/build')
+    // only needed for CDN's or sub-directory deploy
+    //.setManifestKeyPrefix('build/')
+
+    /*
+     * ENTRY CONFIG
+     *
+     * Add 1 entry for each "page" of your app
+     * (including one that's included on every page - e.g. "app")
+     *
+     * Each entry will result in one JavaScript file (e.g. app.js)
+     * and one CSS file (e.g. app.css) if you JavaScript imports CSS.
+     */
+    .addEntry('app', './assets/js/app.js')
+    //.addEntry('page1', './assets/js/page1.js')
+    //.addEntry('page2', './assets/js/page2.js')
+
+    // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
+    .splitEntryChunks()
+
+    // will require an extra script tag for runtime.js
+    // but, you probably want this, unless you're building a single-page app
+    .enableSingleRuntimeChunk()
+
+    /*
+     * FEATURE CONFIG
+     *
+     * Enable & configure other features below. For a full
+     * list of features, see:
+     * https://symfony.com/doc/current/frontend.html#adding-more-features
+     */
+    .cleanupOutputBeforeBuild()
+    .enableBuildNotifications()
+    .enableSourceMaps(!Encore.isProduction())
+    // enables hashed filenames (e.g. app.abc123.css)
+    //.enableVersioning(Encore.isProduction())
+
+    // enables @babel/preset-env polyfills
+    .configureBabel(() => {}, {
+        useBuiltIns: 'usage',
+        corejs: 3
+    })
+
+    .enablePostCssLoader()
+
+
+    // uncomment to get integrity="..." attributes on your script & link tags
+    // requires WebpackEncoreBundle 1.4 or higher
+    //.enableIntegrityHashes()
+;
+
+if (Encore.isProduction()) {
+    Encore.addPlugin(new PurgeCssPlugin({
+        paths: glob.sync([
+            path.join(__dirname, 'templates/**/*.html.twig'),
+            path.join(__dirname, 'assets/**/*.vue'),
+        ]),
+        extractors: [
+            {
+                extractor: class {
+                    static extract(content) {
+                        return content.match(/[A-z0-9-:\/]+/g) || []
+                    }
+                },
+                extensions: ['twig', 'vue']
+            }
+        ]
+    }))
+}
+
+module.exports = Encore.getWebpackConfig();

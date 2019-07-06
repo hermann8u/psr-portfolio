@@ -1,0 +1,8 @@
+services:
+    Twig\Loader\FilesystemLoader:
+        arguments: ['%app.project_dir%/templates']
+
+    Twig\Environment:
+        arguments:
+            - '@Twig\Loader\FilesystemLoader'
+            - { debug: '%app.debug%', cache: '%app.cache_dir%/templates' }

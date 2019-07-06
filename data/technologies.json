@@ -1,0 +1,22 @@
+[
+    {
+        "logo": "php.svg",
+        "title": "PHP",
+        "link": "https://php.net"
+    },
+    {
+        "logo": "symfony_white.png",
+        "title": "Symfony",
+        "link": "https://symfony.com"
+    },
+    {
+        "logo": "vue.png",
+        "title": "Vue js",
+        "link": "https://vuejs.org"
+    },
+    {
+        "logo": "tailwind.png",
+        "title": "Tailwind CSS",
+        "link": "https://tailwindcss.com"
+    }
+]

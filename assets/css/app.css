@@ -1,0 +1,53 @@
+@tailwind base;
+
+@tailwind components;
+
+a {
+    @apply no-underline text-blue-400;
+}
+
+a:hover {
+    @apply text-blue-200;
+}
+
+a.active {
+    @apply border-b-2 border-white text-white;
+}
+
+svg {
+    @apply inline;
+}
+
+.btn {
+    @apply bg-gray-900 border-2 border-blue-400 inline-block rounded px-4 py-2 shadow-lg;
+}
+
+.btn:hover {
+    @apply border-blue-200;
+}
+
+.list {
+    @apply list-none text-blue-200;
+}
+
+.list li {
+    @apply my-2;
+}
+
+.list li:before {
+    content: url('../img/chevron-circle-right.svg');
+    @apply pr-4;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0
+}
+
+@tailwind utilities;

@@ -1,0 +1,3 @@
+services:
+    Symfony\Component\PropertyAccess\PropertyAccessorInterface:
+        factory: ['Symfony\Component\PropertyAccess\PropertyAccess', 'createPropertyAccessor']

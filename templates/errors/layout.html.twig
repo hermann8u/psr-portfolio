@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="flex flex-col align-center">
+        <div class="w-full text-center">
+            <h1 class="text-xl font-bold text-red-700 mb-4">Error {% block status_code %}{% endblock %} · {% block status_code_message %}{% endblock %}</h1>
+            <p>{% block error_message %}{% endblock %}</p>
+            <a href="/" class="my-4 btn">Take me home</a>
+        </div>
+        {% if exception is defined %}
+            <div class="container text-blue-800">
+                <div class="rounded bg-white">
+                    <header>
+                        <h2 class="font-bold text-xl">{{ exception.message }}</h2>
+                    </header>
+
+                    {% for trace in exception.trace %}
+                        {#<p>{{ trace }}</p>#}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock %}

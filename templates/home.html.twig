@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} at Metz, France{% endblock %}
+
+{% block body %}
+    <div class="mt-32 md:mt-0 bg-gray-800 mx-auto w-full lg:w-3/4 shadow-2xl rounded-lg">
+        <div class="md:flex md:items-center md:-mx-4 p-8">
+            <div class="md:px-8 -mt-32 md:mt-0 mb-10 md:mb-0">
+                <img class="border-4 border-gray-800 md:border-0 md:shadow-2xl md:border-gray-700 w-48 rounded-full mx-auto" src="/img/florian_hd_square.jpg" alt="Florian Hermann photo">
+            </div>
+            <div class="md:text-left md:flex-grow my-4 md:px-8">
+                <header class="flex justify-between items-center mb-8">
+                    <h1 class="text-white font-semibold md:font-bold text-xl tracking-wider">
+                        Florian <span class="text-blue-600 uppercase">Hermann</span><br/>
+                    </h1>
+                    <div>
+                        <a href="https://github.com/hermann8u" target="_blank" rel="noopener noreferrer">
+                            <svg class="fill-current w-6 mx-1" aria-hidden="true" data-prefix="fab" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
+                                <path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path>
+                            </svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/florian-hermann-1b744b131/" target="_blank" rel="noopener noreferrer">
+                            <svg class="fill-current w-6 mx-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="LinkedIn_w_x2F__circle" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
+                                <path d="M10,0.4c-5.302,0-9.6,4.298-9.6,9.6s4.298,9.6,9.6,9.6s9.6-4.298,9.6-9.6S15.302,0.4,10,0.4z M7.65,13.979  H5.706V7.723H7.65V13.979z M6.666,6.955c-0.614,0-1.011-0.435-1.011-0.973c0-0.549,0.409-0.971,1.036-0.971s1.011,0.422,1.023,0.971  C7.714,6.52,7.318,6.955,6.666,6.955z M14.75,13.979h-1.944v-3.467c0-0.807-0.282-1.355-0.985-1.355  c-0.537,0-0.856,0.371-0.997,0.728c-0.052,0.127-0.065,0.307-0.065,0.486v3.607H8.814v-4.26c0-0.781-0.025-1.434-0.051-1.996h1.689  l0.089,0.869h0.039c0.256-0.408,0.883-1.01,1.932-1.01c1.279,0,2.238,0.857,2.238,2.699V13.979z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </header>
+                <ul class="list my-2">
+                    <li>Web Developer at
+                        <a href="https://adimeo.com" target="_blank" rel="noopener noreferrer">
+                            <img class="h-10 inline pl-2" src="/img/adimeo.png" alt="Adimeo, digital transformer"/>
+                        </a>
+                    </li>
+                    <li>Temporary teacher for
+                        <a href="https://www.univ-lorraine.fr/" target="_blank" rel="noopener noreferrer">
+                            <img class="h-10 inline pl-2" src="/img/univ_lorraine.png" alt="Université de Lorraine"/>
+                        </a>
+                    </li>
+                </ul>
+                <div class="mt-8">
+                    <h2 class="text-base font-normal text-xl mb-3">
+                        <span class="mr-2">Technologies</span>
+                        <svg class="fill-current text-red-500 w-4 h-4" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Heart" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
+                            <path d="M17.19,4.155c-1.672-1.534-4.383-1.534-6.055,0L10,5.197L8.864,4.155c-1.672-1.534-4.382-1.534-6.054,0  c-1.881,1.727-1.881,4.52,0,6.246L10,17l7.19-6.599C19.07,8.675,19.07,5.881,17.19,4.155z"/>
+                        </svg>
+                    </h2>
+                    <div class="flex items-center">
+                        {% for technology in technologies %}
+                            <a href="{{ technology.link }}" target="_blank" rel="noopener noreferer">
+                                <img
+                                    alt="{{ technology.title }}"
+                                    title="{{ technology.title }}"
+                                    src="/img/technologies/{{ technology.logo }}"
+                                    class="mx-2 h-6"
+                                />
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

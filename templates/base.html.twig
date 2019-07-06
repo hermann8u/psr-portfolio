@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>{% block title %}Florian Hermann - Web developer{% endblock %}</title>
+        <link rel="icon" href="/favicon.ico">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700" rel="stylesheet">
+        <link href="build/app.css" rel="stylesheet">
+        <meta name="description=" content="{% block description %}Florian Hermann is a web developer, entrepreneur and designer based at Metz, France.{% endblock %}">
+    </head>
+    <body class="bg-gray-900 text-white font-sans">
+        {% include '_nav.html.twig' %}
+        <main class="flex items-center min-h-screen">
+            <div class="container my-8">
+                {% block body %}{% endblock%}
+            </div>
+        </main>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
