@@ -1,5 +1,7 @@
 vendor/
 var/
 node_modules/
+public/build
+public/google*.html
 .env.local
 data/counter.json
