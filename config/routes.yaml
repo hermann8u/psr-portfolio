@@ -2,15 +2,15 @@
 
 home:
     path: '/'
-    controller: App\Action\HomeAction
+    controller: 'App\Action\HomeAction'
     methods: ['GET']
 
 projects:
     path: '/projects'
-    controller: App\Action\ProjectsAction
+    controller: 'App\Action\ProjectsAction'
     methods: ['GET']
 
 stats:
     path: '/_stats'
-    controller: App\Action\GetStatsAction
+    controller: 'App\Action\GetStatsAction'
     methods: ['GET']

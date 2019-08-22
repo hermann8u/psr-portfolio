@@ -9,22 +9,25 @@ use App\Domain\Repository;
 use App\Responder\Responder;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
-final class ProjectsAction
+final class ProjectsAction implements RequestHandlerInterface
 {
-    /**
-     * @var Repository
-     */
+    /** @var Repository */
     private $repository;
 
-    public function __construct(Repository $repository)
+    /** @var Responder */
+    private $responder;
+
+    public function __construct(Repository $repository, Responder $responder)
     {
         $this->repository = $repository;
+        $this->responder = $responder;
     }
 
-    public function __invoke(ServerRequestInterface $request, Responder $responder): ResponseInterface
+    public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        return $responder->respond($request, 'projects.html.twig', [
+        return $this->responder->respond($request, 'projects.html.twig', [
             'projects' => $this->repository->getAll(Project::class)
         ]);
     }

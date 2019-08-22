@@ -12,19 +12,13 @@ use Twig\Environment;
 
 class Responder
 {
-    /**
-     * @var ResponseFactoryInterface
-     */
+    /** @var ResponseFactoryInterface */
     private $responseFactory;
 
-    /**
-     * @var StreamFactoryInterface
-     */
+    /** @var StreamFactoryInterface */
     private $streamFactory;
 
-    /**
-     * @var Environment
-     */
+    /** @var Environment */
     private $twig;
 
     public function __construct(ResponseFactoryInterface $responseFactory, StreamFactoryInterface $streamFactory, Environment $twig)

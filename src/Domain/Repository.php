@@ -9,14 +9,10 @@ use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 
 class Repository
 {
-    /**
-     * @var PropertyAccessorInterface
-     */
+    /** @var PropertyAccessorInterface */
     private $propertyAccessor;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $projectDir;
 
     public function __construct(PropertyAccessorInterface $propertyAccessor, string $projectDir)

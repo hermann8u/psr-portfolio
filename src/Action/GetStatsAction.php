@@ -7,23 +7,27 @@ namespace App\Action;
 use App\Domain\Model\Counter;
 use App\Domain\Repository;
 use App\Responder\Responder;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
-class GetStatsAction
+class GetStatsAction implements RequestHandlerInterface
 {
-    /**
-     * @var Repository
-     */
+    /** @var Repository */
     private $repository;
 
-    public function __construct(Repository $repository)
+    /** @var Responder */
+    private $responder;
+
+    public function __construct(Repository $repository, Responder $responder)
     {
         $this->repository = $repository;
+        $this->responder = $responder;
     }
 
-    public function __invoke(ServerRequestInterface $request, Responder $responder)
+    public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        return $responder->respond($request, 'stats.html.twig', [
+        return $this->responder->respond($request, 'stats.html.twig', [
             'counter' => $this->repository->getAll(Counter::class)[0] ?? null
         ]);
     }

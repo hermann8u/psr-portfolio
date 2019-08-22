@@ -8,14 +8,10 @@ class Counter implements SavableModel
 {
     const DATA_FILE_NAME = 'counter.json';
 
-    /**
-     * @var int
-     */
+    /** @var int */
     private $count;
 
-    /**
-     * @var string[]
-     */
+    /** @var string[] */
     private $dates;
 
     public function __construct()
@@ -48,6 +44,7 @@ class Counter implements SavableModel
     public function setCount(int $count): self
     {
         $this->count = $count;
+
         return $this;
     }
 
@@ -59,6 +56,7 @@ class Counter implements SavableModel
     public function setDates(array $dates): self
     {
         $this->dates = $dates;
+
         return $this;
     }
 }

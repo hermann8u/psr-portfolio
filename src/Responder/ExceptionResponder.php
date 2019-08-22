@@ -14,29 +14,19 @@ use Twig\Environment;
 
 class ExceptionResponder
 {
-    /**
-     * @var ResponseFactoryInterface
-     */
+    /** @var ResponseFactoryInterface */
     private $responseFactory;
 
-    /**
-     * @var StreamFactoryInterface
-     */
+    /** @var StreamFactoryInterface */
     private $streamFactory;
 
-    /**
-     * @var Environment
-     */
+    /** @var Environment */
     private $twig;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $projectDir;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $environment;
 
     public function __construct(

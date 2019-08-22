@@ -8,34 +8,22 @@ class Project
 {
     const DATA_FILE_NAME = 'projects.json';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $name;
 
-    /**
-     * @var string[]
-     */
+    /** @var string[] */
     private $tags;
 
-    /**
-     * @var string[]
-     */
+    /** @var string[] */
     private $technologies;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $image;
 
-    /**
-     * @var string|null
-     */
+    /** @var string|null */
     private $onlineLink;
 
-    /**
-     * @var string|null
-     */
+    /** @var string|null */
     private $githubLink;
 
     public function __construct()
@@ -87,6 +75,7 @@ class Project
     public function setImage(string $image): self
     {
         $this->image = $image;
+
         return $this;
     }
 
@@ -98,6 +87,7 @@ class Project
     public function setOnlineLink(?string $onlineLink): self
     {
         $this->onlineLink = $onlineLink;
+
         return $this;
     }
 
@@ -109,6 +99,7 @@ class Project
     public function setGithubLink(?string $githubLink): self
     {
         $this->githubLink = $githubLink;
+
         return $this;
     }
 }

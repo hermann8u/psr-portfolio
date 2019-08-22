@@ -13,9 +13,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class Counter implements MiddlewareInterface
 {
-    /**
-     * @var Repository
-     */
+    /** @var Repository */
     private $repository;
 
     public function __construct(Repository $repository)
@@ -30,9 +28,7 @@ class Counter implements MiddlewareInterface
             return $response;
         }
 
-        /**
-         * @var Model|null $counter
-         */
+        /** @var Model|null $counter */
         $counter = $this->repository->getAll(Model::class)[0] ?? null;
         if ($counter) {
             $this->repository->save($counter->increment());

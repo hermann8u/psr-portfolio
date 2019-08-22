@@ -8,19 +8,13 @@ class Technology
 {
     const DATA_FILE_NAME = 'technologies.json';
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $title;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $logo;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $link;
 
     public function getTitle(): string
@@ -31,6 +25,7 @@ class Technology
     public function setTitle(string $title): self
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -42,6 +37,7 @@ class Technology
     public function setLogo(string $logo): self
     {
         $this->logo = $logo;
+
         return $this;
     }
 
@@ -53,6 +49,7 @@ class Technology
     public function setLink(string $link): self
     {
         $this->link = $link;
+
         return $this;
     }
 }
