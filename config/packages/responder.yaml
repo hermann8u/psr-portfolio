@@ -1,0 +1,2 @@
+services:
+    App\Responder\ResponderInterface: '@App\Responder\Responder'

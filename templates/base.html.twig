@@ -7,7 +7,7 @@
         <title>{% block title %}Florian Hermann - Web developer{% endblock %}</title>
         <link rel="icon" href="/favicon.ico">
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700" rel="stylesheet">
-        <link href="build/app.css" rel="stylesheet">
+        <link href="/build/app.css" rel="stylesheet">
         <meta name="description=" content="{% block description %}Florian Hermann is a web developer, entrepreneur and designer based at Metz, France.{% endblock %}">
     </head>
     <body class="bg-gray-900 text-white font-sans">
@@ -17,6 +17,12 @@
                 {% block body %}{% endblock%}
             </div>
         </main>
+        <footer class="fixed bottom-0 w-full bg-black p-1">
+            <p class="text-xs text-right mr-4">
+                Rendered in <span class="font-bold text-blue-400">{{ debug_microtime() }} ms</span> with
+                <a href="https://github.com/hermann8u/psr-framework" target="_blank" rel="noopener noreferrer">psr-framework</a>
+            </p>
+        </footer>
         {% block javascripts %}{% endblock %}
     </body>
 </html>
