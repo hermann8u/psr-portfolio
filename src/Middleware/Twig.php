@@ -10,6 +10,9 @@ use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Twig\Environment;
 
+/**
+ * Init Twig extensions
+ */
 final class Twig implements MiddlewareInterface
 {
     /** @var Environment */
@@ -24,13 +27,6 @@ final class Twig implements MiddlewareInterface
         $this->twigExtensions = $twigExtensions;
     }
 
-    /**
-     * Process an incoming server request.
-     *
-     * Processes an incoming server request in order to produce a response.
-     * If unable to produce the response itself, it may delegate to the provided
-     * request handler to do so.
-     */
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         foreach ($this->twigExtensions as $extension) {

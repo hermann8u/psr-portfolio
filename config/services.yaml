@@ -14,8 +14,8 @@ services:
         autowire: true
         public: false
         bind:
-            string $environment: '%app.environment%'
             string $projectDir: '%app.project_dir%'
+            bool $debug: '%app.debug%'
 
     _instanceof:
         Twig\Extension\ExtensionInterface:
@@ -40,9 +40,8 @@ services:
         public: true
         arguments:
             - '@App\Middleware\ExceptionHandler'
-            - '@App\Middleware\Router'
-            - '@App\Middleware\Counter'
             - '@App\Middleware\Twig'
+            - '@App\Middleware\Router'
             - '@App\Middleware\ActionHandler'
 
     # add more service definitions when explicit configuration is needed

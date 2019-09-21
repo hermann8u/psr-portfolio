@@ -9,8 +9,3 @@ projects:
     path: '/projects'
     controller: 'App\Action\ProjectsAction'
     methods: ['GET']
-
-stats:
-    path: '/_stats'
-    controller: 'App\Action\GetStatsAction'
-    methods: ['GET']

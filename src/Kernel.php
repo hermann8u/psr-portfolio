@@ -47,8 +47,6 @@ final class Kernel
         $response = $this->container->get(RequestHandler::class)->handle($request);
 
         (new SapiEmitter())->emit($response);
-
-        // var_dump((microtime(true) - APP_START) * 1000);
     }
 
     /**

@@ -11,6 +11,7 @@ use Psr\Http\Message\StreamFactoryInterface;
 use Symfony\Component\Routing\Exception\MethodNotAllowedException;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Twig\Environment;
+use Twig\Error\LoaderError;
 
 class ExceptionResponder
 {
@@ -26,25 +27,29 @@ class ExceptionResponder
     /** @var string */
     private $projectDir;
 
-    /** @var string */
-    private $environment;
+    /** @var bool */
+    private $debug;
 
     public function __construct(
         ResponseFactoryInterface $responseFactory,
         StreamFactoryInterface $streamFactory,
         Environment $twig,
         string $projectDir,
-        string $environment
+        bool $debug
     ) {
         $this->responseFactory = $responseFactory;
         $this->streamFactory = $streamFactory;
         $this->twig = $twig;
         $this->projectDir = $projectDir;
-        $this->environment = $environment;
+        $this->debug = $debug;
     }
 
     public function respond(ServerRequestInterface $request, \Throwable $throwable): ResponseInterface
     {
+        if (true === $this->debug) {
+            throw $throwable;
+        }
+
         $this->twig->addGlobal('request', $request->getAttributes());
 
         $statusCode = 500;
@@ -54,21 +59,19 @@ class ExceptionResponder
             $statusCode = 405;
         }
 
-        $template = sprintf("errors/%d.html.twig", $statusCode);
-        if (!file_exists($this->projectDir.'/templates/'.$template)) {
-            $template = 'errors/default.html.twig';
+        $template = sprintf('errors/%d.html.twig', $statusCode);
+        try {
+            $content = $this->twig->render($template);
+        } catch (LoaderError $error) {
+            $content = $this->twig->render('errors/default.html.twig');
         }
 
-        $data = $this->environment !== 'prod' ? ['exception' => $throwable] : [];
+        $stream = $this->streamFactory->createStream($content);
 
         return $this
             ->responseFactory
             ->createResponse($statusCode)
-            ->withBody($this
-                ->streamFactory
-                ->createStream($this
-                    ->twig
-                    ->render($template, $data)))
+            ->withBody($stream)
             ->withProtocolVersion($request->getProtocolVersion())
             ->withHeader('Content-Type', 'text/html; charset=UTF-8');
     }
