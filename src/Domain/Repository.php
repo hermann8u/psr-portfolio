@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Domain;
 
-use App\Domain\Model\SavableModel;
 use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 
 class Repository
@@ -38,20 +37,6 @@ class Repository
         }
 
         return $entities;
-    }
-
-    public function save(SavableModel ...$models): bool
-    {
-        $fileName = $this->getFileNameByModel(get_class($models[0]));
-        if (!$fileName) {
-            return false;
-        }
-
-        $data = array_map(function (SavableModel $model) {
-            return $model->getArrayData();
-        }, $models);
-
-        return (bool) file_put_contents($fileName, json_encode($data, JSON_PRETTY_PRINT));
     }
 
     private function getFileData(string $modelName): array
