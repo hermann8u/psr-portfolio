@@ -18,16 +18,16 @@ class AppExtension extends AbstractExtension
         $this->urlGenerator = $urlGenerator;
     }
 
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('url', [$this->urlGenerator, 'generate']),
-            new TwigFunction('debug_microtime', [$this, 'debugMicrotime']),
+            new TwigFunction('execution_time', [$this, 'executionTime']),
         ];
     }
 
-    public function debugMicrotime()
+    public function executionTime(): ?float
     {
-        return round((microtime(true) - APP_START) * 1000);
+        return round((microtime(true) - APP_START) * 1000) ?: null;
     }
 }

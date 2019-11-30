@@ -43,19 +43,5 @@
         "image": "space_invaders.png",
         "githubLink": "https://github.com/hermann8u/space-invaders",
         "onlineLink": "http://game.florianhermann.fr"
-    },
-    {
-        "name": "Felici interieur",
-        "tags": [
-            "Pro",
-            "Project management",
-            "Design"
-        ],
-        "image": "felici.png",
-        "technologies": [
-            "Bootstrap",
-            "jQuery"
-        ],
-        "onlineLink": "http://felici-interieur.fr"
     }
 ]

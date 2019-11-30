@@ -10,7 +10,7 @@
         <link href="/build/app.css" rel="stylesheet">
         <meta name="description" content="{% block description %}Florian Hermann is a web developer and entrepreneur based in Metz, France.{% endblock %}">
     </head>
-    <body class="bg-gray-900 text-white font-sans border-t-2 border-blue-400 min-h-screen flex flex-col">
+    <body class="bg-gray-900 text-white font-sans min-h-screen flex flex-col">
         {% include '_nav.html.twig' %}
         <main class="flex items-center h-full flex-1">
             <div class="container my-8">
@@ -19,7 +19,7 @@
         </main>
         <footer class="bg-black p-1">
             <p class="text-xs text-right mx-4">
-                Rendered in <span class="font-bold text-blue-400">{{ debug_microtime() }} ms</span> with
+                Rendered in <span class="font-bold text-blue-400">{{ execution_time() }} ms</span> with
                 <a href="https://github.com/hermann8u/psr-framework" target="_blank" rel="noopener noreferrer">psr-framework</a>
             </p>
         </footer>
