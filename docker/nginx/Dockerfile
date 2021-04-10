@@ -6,12 +6,12 @@ COPY package-lock.json .
 RUN npm install
 # replace with npm ci
 
-COPY assets /code/assets
-COPY postcss.config.js /code/postcss.config.js
-COPY tailwind.config.js /code/tailwind.config.js
-COPY webpack.config.js /code/webpack.config.js
-COPY src /code/src
-COPY templates /code/templates
+COPY assets /node/assets
+COPY postcss.config.js /node/postcss.config.js
+COPY tailwind.config.js /node/tailwind.config.js
+COPY webpack.config.js /node/webpack.config.js
+COPY src /node/src
+COPY templates /node/templates
 RUN pwd && ls -la && npm run build
 
 FROM registry.hub.docker.com/library/nginx:1.19-alpine
