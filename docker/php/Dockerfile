@@ -1,5 +1,7 @@
 FROM registry.hub.docker.com/library/php:7.4-fpm-alpine AS base
 
+RUN mv /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
+
 FROM base AS composer
 
 RUN apk --no-cache update && \
@@ -23,10 +25,22 @@ RUN php composer.phar install \
     --no-progress \
     --quiet
 
-FROM base
+FROM composer AS dev
+
+ENV APP_ENV dev
+ENV APP_DEBUG 1
+
+# install xdebug
+
+FROM base AS prod
+
+ENV APP_ENV prod
+ENV APP_DEBUG 0
 
 COPY ./config /var/psr-portfolio/config
 COPY ./src /var/psr-portfolio/src
 COPY ./public/index.php /var/psr-portfolio/public/index.php
 COPY ./templates /var/psr-portfolio/templates
 COPY --from=composer /composer/vendor /var/psr-portfolio/vendor
+
+RUN mv /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini

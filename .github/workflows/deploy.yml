@@ -1,0 +1,23 @@
+name: Push Docker images to GitHub
+on:
+    push:
+        branches:
+            - master
+jobs:
+    push:
+        runs-on: ubuntu-latest
+        environment:
+            name: prod
+        steps:
+            -   uses: actions/checkout@v2
+            -   name: Build image
+                run: |
+                    docker build . --file ./docker/php/Dockerfile --tag ghcr.io/${{ github.repository }}/php:latest
+                    docker build . --file ./docker/http/Dockerfile --tag ghcr.io/${{ github.repository }}/http:latest
+            -   name: Log into registry
+                run: echo "${{ secrets.CONTAINER_REGISTRY_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+            -   name: Push image
+                run: |
+                    docker push ghcr.io/${{ github.repository }}/php:latest
+                    docker push ghcr.io/${{ github.repository }}/http:latest

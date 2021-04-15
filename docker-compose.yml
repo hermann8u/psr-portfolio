@@ -5,10 +5,13 @@ services:
         ports:
             - "${PF_HTTP_PORT:-8080}:80"
         volumes:
-            - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+            - ./docker/http/nginx.conf:/etc/nginx/conf.d/default.conf:ro
             - ./public:/var/psr-portfolio/public:rw
     php:
-        image: registry.hub.docker.com/library/php:7.4-fpm-alpine
+        build:
+            target: dev
+            dockerfile: ./docker/php/Dockerfile
+            context: .
         volumes:
             - ./:/var/psr-portfolio:rw
         tmpfs:
