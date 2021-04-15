@@ -25,6 +25,15 @@ RUN php composer.phar install \
     --no-progress \
     --quiet
 
+COPY ./src /composer/src
+RUN php composer.phar dump-autoload  \
+    --no-interaction \
+    --no-dev \
+    --optimize \
+    --classmap-authoritative \
+    --no-scripts \
+    --quiet
+
 FROM composer AS dev
 
 ENV APP_ENV dev

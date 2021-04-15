@@ -1,10 +1,10 @@
 version: "3.8"
 services:
     http:
-        image: psr-portfolio_http:latest
+        image: ghcr.io/hermann8u/psr-portfolio/http:latest
         ports:
             - "${PF_HTTP_PORT:-8080}:80"
     php:
-        image: psr-portfolio_php:latest
+        image: ghcr.io/hermann8u/psr-portfolio/php:latest
         tmpfs:
             - /var/psr-portfolio/var:mode=700,uid=82,gid=82
