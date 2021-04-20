@@ -21,3 +21,19 @@ jobs:
                 run: |
                     docker push ghcr.io/${{ github.repository }}/php:latest
                     docker push ghcr.io/${{ github.repository }}/http:latest
+
+            -   name: Setup SSH Keys and known_hosts
+                env:
+                    SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+                run: |
+                    ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+                    ssh-add - <<< "${{ secrets.DOCKER_SERVER_SSH_KEY }}"
+
+            -   name: Deployment
+                env:
+                    SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+                run: |
+                    docker context create vps --docker host=${{ secrets.DOCKER_SERVER_HOST }}
+                    docker context use vps
+                    docker-compose -f docker-compose.prod.yml pull
+                    docker-compose -f docker-compose.prod.yml up -d
