@@ -17,3 +17,7 @@ FROM registry.hub.docker.com/library/nginx:1.19-alpine
 
 COPY ./docker/http/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=node /node/public /var/psr-portfolio/public
+COPY ./public/img /var/psr-portfolio/public/img
+COPY ./public/favicon.ico /var/psr-portfolio/public/favicon.ico
+COPY ./public/robots.txt /var/psr-portfolio/public/robots.txt
+COPY ./public/sitemap.xml /var/psr-portfolio/public/sitemap.xml
