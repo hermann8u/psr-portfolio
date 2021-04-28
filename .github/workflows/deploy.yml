@@ -28,6 +28,8 @@ jobs:
                 run: |
                     ssh-agent -a $SSH_AUTH_SOCK > /dev/null
                     ssh-add - <<< "${{ secrets.DOCKER_SERVER_SSH_KEY }}"
+                    mkdir -p ~/.ssh
+                    echo ${{ secrets.DOCKER_SERVER_HOST_FINGERPRINT }} | base64 -d > ~/.ssh/known_hosts
 
             -   name: Deployment
                 env:
