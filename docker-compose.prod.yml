@@ -1,10 +1,42 @@
 version: "3.8"
+
+networks:
+    portfolio-internal:
+        internal: true
+    ingress:
+        internal: true
+    external:
+        internal: false
+
 services:
+    ingress:
+        image: registry.hub.docker.com/library/traefik:2.4
+        command: --api.insecure=true --providers.docker --providers.docker.exposedByDefault=false
+        ports:
+            - "80:80"
+            - "443:443"
+            - "8080:8080"
+        volumes:
+            # So that Traefik can listen to the Docker events
+            - /var/run/docker.sock:/var/run/docker.sock
+        networks:
+            - external
+            - ingress
+
     http:
         image: ghcr.io/hermann8u/psr-portfolio/http:latest
-        ports:
-            - "${PF_HTTP_PORT:-8080}:80"
+        labels:
+            - "traefik.http.routers.http.rule=Host(`florianhermann.fr`)"
+            - "traefik.enable=true"
+            - "traefik.docker.network=psr-portfolio_ingress"
+            - "traefik.http.services.http.loadbalancer.server.port=80"
+        networks:
+            - ingress
+            - portfolio-internal
+
     php:
         image: ghcr.io/hermann8u/psr-portfolio/php:latest
         tmpfs:
             - /var/psr-portfolio/var:mode=700,uid=82,gid=82
+        networks:
+            - portfolio-internal
