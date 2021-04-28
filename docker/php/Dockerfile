@@ -50,6 +50,7 @@ COPY ./config /var/psr-portfolio/config
 COPY ./src /var/psr-portfolio/src
 COPY ./public/index.php /var/psr-portfolio/public/index.php
 COPY ./templates /var/psr-portfolio/templates
+COPY ./data /var/psr-portfolio/data
 COPY --from=composer /composer/vendor /var/psr-portfolio/vendor
 
 RUN mv /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
