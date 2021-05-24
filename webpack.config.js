@@ -1,7 +1,4 @@
 var Encore = require('@symfony/webpack-encore');
-var PurgeCssPlugin = require('purgecss-webpack-plugin');
-var glob = require('glob-all');
-var path = require('path');
 
 Encore
     // directory where compiled assets will be stored
@@ -20,7 +17,7 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if you JavaScript imports CSS.
      */
-    .addEntry('app', './assets/js/app.js')
+    .addStyleEntry('app', './assets/css/app.css')
     //.addEntry('page1', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')
 
@@ -44,37 +41,15 @@ Encore
     // enables hashed filenames (e.g. app.abc123.css)
     //.enableVersioning(Encore.isProduction())
 
-    // enables @babel/preset-env polyfills
-    .configureBabel(() => {}, {
-        useBuiltIns: 'usage',
-        corejs: 3
+    .configureBabel((config) => {
+        config.plugins.push('@babel/plugin-proposal-class-properties');
+    })
+    .configureBabelPresetEnv((config) => {
+        config.useBuiltIns = 'usage';
+        config.corejs = 3;
     })
 
     .enablePostCssLoader()
-
-
-    // uncomment to get integrity="..." attributes on your script & link tags
-    // requires WebpackEncoreBundle 1.4 or higher
-    //.enableIntegrityHashes()
 ;
-
-if (Encore.isProduction()) {
-    Encore.addPlugin(new PurgeCssPlugin({
-        paths: glob.sync([
-            path.join(__dirname, 'templates/**/*.html.twig'),
-            path.join(__dirname, 'assets/**/*.vue'),
-        ]),
-        extractors: [
-            {
-                extractor: class {
-                    static extract(content) {
-                        return content.match(/[A-z0-9-:\/]+/g) || []
-                    }
-                },
-                extensions: ['twig', 'vue']
-            }
-        ]
-    }))
-}
 
 module.exports = Encore.getWebpackConfig();
