@@ -19,8 +19,7 @@ use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
  */
 final class ActionHandler implements MiddlewareInterface
 {
-    /** @var ContainerInterface */
-    private $actionLocator;
+    private ContainerInterface $actionLocator;
 
     public function __construct(ContainerInterface $actionLocator)
     {

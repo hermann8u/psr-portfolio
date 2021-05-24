@@ -8,11 +8,8 @@ use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 
 class Repository
 {
-    /** @var PropertyAccessorInterface */
-    private $propertyAccessor;
-
-    /** @var string */
-    private $projectDir;
+    private PropertyAccessorInterface $propertyAccessor;
+    private string $projectDir;
 
     public function __construct(PropertyAccessorInterface $propertyAccessor, string $projectDir)
     {

@@ -9,6 +9,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use Throwable;
 
 /**
  * This middleware should be the first of the stack.
@@ -17,8 +18,7 @@ use Psr\Http\Server\RequestHandlerInterface;
  */
 final class ExceptionHandler implements MiddlewareInterface
 {
-    /** @var ExceptionResponder */
-    private $responder;
+    private ExceptionResponder $responder;
 
     public function __construct(ExceptionResponder $responder)
     {
@@ -29,7 +29,7 @@ final class ExceptionHandler implements MiddlewareInterface
     {
         try {
             $response = $handler->handle($request);
-        } catch (\Throwable $exception) {
+        } catch (Throwable $exception) {
             $response = $this->responder->respond($request, $exception);
         }
 

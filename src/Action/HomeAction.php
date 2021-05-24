@@ -13,11 +13,8 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 final class HomeAction implements RequestHandlerInterface
 {
-    /** @var Repository */
-    private $repository;
-
-    /** @var Responder */
-    private $responder;
+    private Repository $repository;
+    private Responder $responder;
 
     public function __construct(Repository $repository, Responder $responder)
     {
