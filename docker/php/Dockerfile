@@ -8,13 +8,15 @@ RUN apk --no-cache update && \
     apk add git unzip libzip-dev && \
     docker-php-ext-install zip
 
-COPY ./composer.json /composer/composer.json
-COPY ./composer.lock /composer/composer.lock
-
 WORKDIR /composer
 
+COPY ./composer.json ./
+COPY ./composer.lock ./
+COPY ./src ./
+
 RUN curl --silent --show-error https://getcomposer.org/installer | php
-RUN php composer.phar install \
+RUN mv /composer/composer.phar /usr/local/bin/composer
+RUN composer install \
     --no-interaction \
     --no-dev \
     --optimize-autoloader \
@@ -25,32 +27,37 @@ RUN php composer.phar install \
     --no-progress \
     --quiet
 
-COPY ./src /composer/src
-RUN php composer.phar dump-autoload  \
-    --no-interaction \
-    --no-dev \
-    --optimize \
-    --classmap-authoritative \
-    --no-scripts \
-    --quiet
-
 FROM composer AS dev
 
 ENV APP_ENV dev
 ENV APP_DEBUG 1
 
-# install xdebug
+WORKDIR /var/www/psr-portfolio
+
+COPY ./composer.json ./
+COPY ./composer.lock ./
+
+RUN composer install \
+    --no-interaction \
+    --no-scripts \
+    --no-suggest \
+    --no-progress \
+    --quiet
+
+# TODO: Install xdebug
 
 FROM base AS prod
 
 ENV APP_ENV prod
 ENV APP_DEBUG 0
 
-COPY ./config /var/psr-portfolio/config
-COPY ./src /var/psr-portfolio/src
-COPY ./public/index.php /var/psr-portfolio/public/index.php
-COPY ./templates /var/psr-portfolio/templates
-COPY ./data /var/psr-portfolio/data
-COPY --from=composer /composer/vendor /var/psr-portfolio/vendor
+WORKDIR /var/www/psr-portfolio
+
+COPY ./config ./
+COPY ./src ./
+COPY ./public/index.php ./public/
+COPY ./templates ./
+COPY ./data ./
+COPY --from=composer /composer/vendor ./
 
 RUN mv /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
