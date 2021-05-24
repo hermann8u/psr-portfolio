@@ -10,13 +10,10 @@ use Throwable;
 
 class ActionNotFoundException extends \InvalidArgumentException implements ExceptionInterface, NotFoundExceptionInterface
 {
-    /** @var string */
-    private $action;
+    private string $action;
+    private ?string $route;
 
-    /** @var string */
-    private $route;
-
-    public function __construct(?string $action, ?string $route, $code = 0, Throwable $previous = null)
+    public function __construct(string $action, ?string $route, $code = 0, Throwable $previous = null)
     {
         $message = sprintf(
             'Action "%s" not found for route "%s"',
@@ -30,18 +27,12 @@ class ActionNotFoundException extends \InvalidArgumentException implements Excep
         $this->route = $route;
     }
 
-    /**
-     * @return string
-     */
     public function getAction(): string
     {
         return $this->action;
     }
 
-    /**
-     * @return string
-     */
-    public function getRoute(): string
+    public function getRoute(): ?string
     {
         return $this->route;
     }

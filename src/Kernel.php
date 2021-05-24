@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App;
 
+use Exception;
 use Nyholm\Psr7Server\ServerRequestCreatorInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -19,23 +20,18 @@ use Symfony\Component\DependencyInjection\Loader\GlobFileLoader;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
-use Zend\HttpHandlerRunner\Emitter\SapiEmitter;
+use Laminas\HttpHandlerRunner\Emitter\SapiEmitter;
 
 /**
  * The kernel of the application
  */
 final class Kernel
 {
-    const CONFIG_EXTENSIONS = '.{php,xml,yaml,yml}';
+    private const CONFIG_EXTENSIONS = '.{php,xml,yaml,yml}';
 
-    /** @var string */
-    private $env;
-
-    /** @var bool */
-    private $debug;
-
-    /** @var ContainerInterface */
-    private $container;
+    private string $env;
+    private bool $debug;
+    private ContainerInterface $container;
 
     public function __construct(string $env, bool $debug = false)
     {
@@ -46,7 +42,7 @@ final class Kernel
     /**
      * Run the application's kernel
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function run(): void
     {
@@ -61,7 +57,7 @@ final class Kernel
     /**
      * Prepare the kernel to run the application
      *
-     * @throws \Exception
+     * @throws Exception
      */
     private function boot(): void
     {
@@ -85,7 +81,7 @@ final class Kernel
      *
      * @param string $containerDumpFile
      *
-     * @throws \Exception
+     * @throws Exception
      */
     private function buildContainer(string $containerDumpFile): void
     {

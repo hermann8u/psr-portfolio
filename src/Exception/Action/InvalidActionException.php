@@ -8,11 +8,8 @@ use App\Exception\ExceptionInterface;
 
 class InvalidActionException extends \InvalidArgumentException implements ExceptionInterface
 {
-    /** @var object */
-    protected $action;
-
-    /** @var string */
-    protected $reasons;
+    protected object $action;
+    protected string $reasons;
 
     public function __construct(object $action, string $reasons = '', $code = 0, \Throwable $previous = null)
     {

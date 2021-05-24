@@ -35,19 +35,18 @@ services:
         public: true
         arguments:
             - '@App\Middleware\ExceptionHandler'
-            - '@App\Middleware\Twig'
+            - '@App\Middleware\TwigExtensionInitializer'
             - '@App\Middleware\Router'
             - '@App\Middleware\ActionHandler'
 
     # Inject a smaller container which contains only the actions
     App\Middleware\ActionHandler:
         arguments:
-            $actionLocator: !tagged_locator app.action
+            $actionLocator: !tagged_locator 'app.action'
 
     # Add more service definitions when explicit configuration is needed
     # Please note that last definitions always *replace* previous ones
 
-    App\Middleware\Twig:
+    App\Middleware\TwigExtensionInitializer:
         arguments:
-            - '@Twig\Environment'
-            - !tagged 'twig.extension'
+            $twigExtensions: !tagged_iterator 'twig.extension'

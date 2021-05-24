@@ -15,32 +15,20 @@ use Twig\Error\LoaderError;
 
 class ExceptionResponder
 {
-    /** @var ResponseFactoryInterface */
-    private $responseFactory;
-
-    /** @var StreamFactoryInterface */
-    private $streamFactory;
-
-    /** @var Environment */
-    private $twig;
-
-    /** @var string */
-    private $projectDir;
-
-    /** @var bool */
-    private $debug;
+    private ResponseFactoryInterface $responseFactory;
+    private StreamFactoryInterface $streamFactory;
+    private Environment $twig;
+    private bool $debug;
 
     public function __construct(
         ResponseFactoryInterface $responseFactory,
         StreamFactoryInterface $streamFactory,
         Environment $twig,
-        string $projectDir,
         bool $debug
     ) {
         $this->responseFactory = $responseFactory;
         $this->streamFactory = $streamFactory;
         $this->twig = $twig;
-        $this->projectDir = $projectDir;
         $this->debug = $debug;
     }
 

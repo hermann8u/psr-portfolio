@@ -1,5 +1,3 @@
-# The application routes
-
 home:
     path: '/'
     controller: 'App\Action\HomeAction'

@@ -6,7 +6,7 @@ namespace App\Domain\Model;
 
 class Project
 {
-    const DATA_FILE_NAME = 'projects.json';
+    public const DATA_FILE_NAME = 'projects.json';
 
     /** @var string */
     private $name;

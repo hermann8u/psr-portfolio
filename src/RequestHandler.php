@@ -18,7 +18,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 final class RequestHandler implements RequestHandlerInterface
 {
     /** @var MiddlewareInterface[] */
-    private $queue;
+    private array $queue;
 
     public function __construct(MiddlewareInterface ...$queue)
     {

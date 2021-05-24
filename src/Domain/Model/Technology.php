@@ -6,7 +6,7 @@ namespace App\Domain\Model;
 
 class Technology
 {
-    const DATA_FILE_NAME = 'technologies.json';
+    public const DATA_FILE_NAME = 'technologies.json';
 
     /** @var string */
     private $title;

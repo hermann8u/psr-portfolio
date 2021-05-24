@@ -9,17 +9,18 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Twig\Environment;
+use Twig\Extension\ExtensionInterface;
 
 /**
  * Init Twig extensions
  */
-final class Twig implements MiddlewareInterface
+final class TwigExtensionInitializer implements MiddlewareInterface
 {
     /** @var Environment */
-    private $environment;
+    private Environment $environment;
 
-    /** @var iterable */
-    private $twigExtensions;
+    /** @var iterable|ExtensionInterface[] */
+    private iterable $twigExtensions;
 
     public function __construct(Environment $environment, iterable $twigExtensions)
     {
