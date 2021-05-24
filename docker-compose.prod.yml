@@ -37,6 +37,6 @@ services:
     php:
         image: ghcr.io/hermann8u/psr-portfolio/php:latest
         tmpfs:
-            - /var/psr-portfolio/var:mode=700,uid=82,gid=82
+            - /var/www/psr-portfolio/var:mode=700,uid=82,gid=82
         networks:
             - portfolio-internal

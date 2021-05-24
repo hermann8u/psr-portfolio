@@ -6,13 +6,13 @@ services:
             - "${PF_HTTP_PORT:-8080}:80"
         volumes:
             - ./docker/http/nginx.conf:/etc/nginx/conf.d/default.conf:ro
-            - ./public:/var/psr-portfolio/public:rw
+            - ./public:/var/www/psr-portfolio/public:rw
     php:
         build:
             target: dev
             dockerfile: ./docker/php/Dockerfile
             context: .
         volumes:
-            - ./:/var/psr-portfolio:rw
+            - ./:/var/www/psr-portfolio:rw
         tmpfs:
-            - /var/psr-portfolio/var:mode=700,uid=82,gid=82
+            - /var/www/psr-portfolio/var:mode=700,uid=82,gid=82
